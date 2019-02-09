@@ -27,7 +27,7 @@ async def consume(queue):
         queue.task_done()
 
 
-async def run(n):
+async def main(n):
     queue = asyncio.Queue()
     # schedule the consumer
     consumer = asyncio.ensure_future(consume(queue))
@@ -39,6 +39,4 @@ async def run(n):
     consumer.cancel()
 
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(run(10))
-loop.close()
+asyncio.run(main(10))
